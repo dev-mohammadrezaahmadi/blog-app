@@ -1,9 +1,9 @@
 import Link from "next/link";
+import { useContext } from "react";
+import { UserContext } from "../lib/context";
 
 const Navbar = () => {
-	const user = true;
-	const username = true;
-
+	const { user, username } = useContext(UserContext);
 	return (
 		<nav className="h-20 w-full bg-white text-black fixed top-0 font-bold z-50 shadow-md">
 			<ul className="list-none m-0 p-0 flex items-center justify-evenly h-full">
