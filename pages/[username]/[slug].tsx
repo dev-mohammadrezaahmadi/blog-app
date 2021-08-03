@@ -1,9 +1,34 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import { getUserWithUsername, postToJSON, firestore } from "../../lib/firebase";
 import { ParsedUrlQuery } from "querystring";
+import { useDocumentData } from "react-firebase-hooks/firestore";
+import { PostType } from "../../lib/context";
+import PostContent from "../../components/PostContent";
 
-const PostPage = () => {
-	return <div></div>;
+interface PostPageProps {
+	path: string;
+	post: PostType;
+}
+
+const PostPage: React.FC<PostPageProps> = (props) => {
+	const postRef = firestore.doc(props.path);
+	const [realtimePost] = useDocumentData(postRef);
+
+	const post = realtimePost || props.post;
+
+	return (
+		<main>
+			<section>
+				<PostContent post={post as PostType} />
+			</section>
+
+			<aside>
+				<p>
+					<strong>{post.likes || 0} ❤ </strong>
+				</p>
+			</aside>
+		</main>
+	);
 };
 
 export default PostPage;
