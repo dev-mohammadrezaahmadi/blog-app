@@ -3,7 +3,7 @@ import { PostType } from "../lib/context";
 
 interface PostFeedProps {
 	posts?: PostType[];
-	admin: boolean;
+	admin?: boolean;
 }
 
 const PostFeed: React.FC<PostFeedProps> = ({ admin, posts }) => {
@@ -20,7 +20,7 @@ export default PostFeed;
 
 interface PostItemProps {
 	post?: PostType;
-	admin: boolean;
+	admin?: boolean;
 }
 const PostItem: React.FC<PostItemProps> = ({ post, admin = false }) => {
 	const wordCount = post?.content.trim().split(/\s+/g).length;
