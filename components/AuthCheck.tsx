@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { UserContext } from "../lib/context";
 
 interface AuthCheckProps {
-	fallback: React.FunctionComponentElement<null>;
+	fallback?: React.FunctionComponentElement<null>;
 }
 
 // Component's children only shown to logged-in users
