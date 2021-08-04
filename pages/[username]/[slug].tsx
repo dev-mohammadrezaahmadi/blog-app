@@ -4,6 +4,9 @@ import { ParsedUrlQuery } from "querystring";
 import { useDocumentData } from "react-firebase-hooks/firestore";
 import { PostType } from "../../lib/context";
 import PostContent from "../../components/PostContent";
+import AuthCheck from "../../components/AuthCheck";
+import LikeButton from "../../components/LikeButton";
+import Link from "next/link";
 
 interface PostPageProps {
 	path: string;
@@ -26,6 +29,15 @@ const PostPage: React.FC<PostPageProps> = (props) => {
 				<p>
 					<strong>{post.likes || 0} ❤ </strong>
 				</p>
+				<AuthCheck
+					fallback={
+						<Link href={"/enter"}>
+							<button>💙 Sign Up</button>
+						</Link>
+					}
+				>
+					<LikeButton postRef={postRef} />
+				</AuthCheck>
 			</aside>
 		</main>
 	);

@@ -23,6 +23,7 @@ export const firestore = firebase.firestore();
 export const storage = firebase.storage();
 export const fromMillis = firebase.firestore.Timestamp.fromMillis;
 export const serverTimeStamp = firebase.firestore.FieldValue.serverTimestamp;
+export const increment = firebase.firestore.FieldValue.increment;
 
 // This utility help us to have percentage of uploading or downloading
 export const STATE_CHANGED = firebase.storage.TaskEvent.STATE_CHANGED;
