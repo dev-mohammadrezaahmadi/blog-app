@@ -1,5 +1,5 @@
 import { useRouter } from "next/dist/client/router";
-import { LegacyRef, useState } from "react";
+import { useState } from "react";
 import { useDocumentData } from "react-firebase-hooks/firestore";
 import { useForm } from "react-hook-form";
 import ReactMarkdown from "react-markdown";
@@ -7,6 +7,7 @@ import AuthCheck from "../../components/AuthCheck";
 import { PostType } from "../../lib/context";
 import { auth, firestore, serverTimeStamp } from "../../lib/firebase";
 import Link from "next/link";
+import ImageUploader from "../../components/ImageUploader";
 
 const AdminPostEdit = () => {
 	return (
@@ -96,6 +97,8 @@ export const PostForm: React.FC<PostFormProps> = ({
 					<ReactMarkdown>{watch("content")}</ReactMarkdown>
 				</div>
 			)}
+
+			<ImageUploader />
 
 			<div className={preview ? "hidden" : "flex"}>
 				<textarea

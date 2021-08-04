@@ -24,6 +24,12 @@ export const storage = firebase.storage();
 export const fromMillis = firebase.firestore.Timestamp.fromMillis;
 export const serverTimeStamp = firebase.firestore.FieldValue.serverTimestamp;
 
+// This utility help us to have percentage of uploading or downloading
+export const STATE_CHANGED = firebase.storage.TaskEvent.STATE_CHANGED;
+
+// Types
+export type FirebaseUserType = firebase.User;
+
 // Helper functions
 
 // Get a user form database based on username prop
