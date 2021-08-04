@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { auth, firestore } from "./firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { UserType } from "./context";
 
 export function useUserData() {
 	const [user] = useAuthState(auth);
@@ -19,6 +20,5 @@ export function useUserData() {
 		}
 		return unsubscribe;
 	}, [user]);
-
-	return { user, username };
+	return { user: user as UserType, username };
 }
