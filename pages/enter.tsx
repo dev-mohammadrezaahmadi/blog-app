@@ -47,7 +47,7 @@ const SignOutButton = () => {
 };
 
 const UsernameForm = () => {
-	const [formValue, setFormValue] = useState<string>("");
+	const [formValue, setFormValue] = useState("");
 	const [isValid, setIsValid] = useState(false);
 	const [loading, setLoading] = useState(false);
 
@@ -66,10 +66,10 @@ const UsernameForm = () => {
 		const batch = firestore.batch();
 		batch.set(userDoc, {
 			username: formValue,
-			photoURL: user.photoURL,
-			displayName: user.displayName,
+			photoURL: user?.photoURL,
+			displayName: user?.displayName,
 		});
-		batch.set(usernameDoc, { uid: user.uid });
+		batch.set(usernameDoc, { uid: user?.uid });
 
 		await batch.commit();
 	};

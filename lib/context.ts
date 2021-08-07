@@ -1,7 +1,6 @@
 import { createContext } from "react";
-import firebase from "firebase";
-
-export interface UserType extends firebase.User {
+import { FirebaseUserType } from "../lib/firebase";
+export interface UserType extends FirebaseUserType {
 	displayName: string;
 	photoURL: string;
 	username: string;
