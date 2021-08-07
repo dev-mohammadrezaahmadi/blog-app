@@ -5,20 +5,25 @@ import { UserContext } from "../lib/context";
 const Navbar = () => {
 	const { user, username } = useContext(UserContext);
 	return (
-		<nav className="h-20 w-full bg-white text-black fixed bottom-0 font-bold z-50 shadow-md">
-			<ul className="list-none m-0 p-0 flex items-center justify-evenly h-full">
-				<li className="rounded-full">
+		<nav
+			style={{ width: "95vw" }}
+			className="shadow-lg rounded-lg bg-white px-4 py-2 mx-auto mt-2"
+		>
+			<ul className="list-none flex justify-between">
+				<li className="flex items-center">
 					<Link href="/">
-						<button className="btn bg-black text-white text-2xl">FEED</button>
+						<button className="bg-black text-white rounded-md p-2 uppercase text-2xl font-bold">
+							DEV
+						</button>
 					</Link>
 				</li>
 
 				{/* user is signed-in and has username */}
 				{username && (
-					<>
+					<div className="flex justify-evenly items-center">
 						<li>
 							<Link href="/admin">
-								<button className="btn bg-blue-700 text-white text-xl">
+								<button className="bg-blue-700 text-white py-2 px-5 text-lg font-bold rounded-md">
 									Write Posts
 								</button>
 							</Link>
@@ -26,20 +31,20 @@ const Navbar = () => {
 						<li>
 							<Link href={`/${username}`}>
 								<img
-									className="cursor-pointer border-black h-8 w-8 rounded-full"
+									className="h-10 w-10 rounded-full ml-1 md:mx-5 cursor-pointer"
 									src={user?.photoURL}
 									alt=""
 								/>
 							</Link>
 						</li>
-					</>
+					</div>
 				)}
 
 				{/* user is not signed or has not created username */}
 				{!username && (
 					<li>
 						<Link href="/enter">
-							<button className="btn text-xl bg-blue-700 text-white">
+							<button className="bg-blue-700 text-white py-2 px-5 text-lg font-bold rounded-md">
 								Log in
 							</button>
 						</Link>
