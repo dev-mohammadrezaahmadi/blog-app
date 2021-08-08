@@ -13,8 +13,8 @@ const PostContent: React.FC<PostContentProps> = ({ post }) => {
 			: post?.createdAt.toDate();
 
 	return (
-		<div>
-			<h1>{post?.title}</h1>
+		<div className="p-8 my-4 bg-white border rounded-md shadow-md w-4/5 mx-auto">
+			<h1 className="font-bold text-lg">{post?.title}</h1>
 			<span>
 				Written by
 				<Link href={`/${post?.username}`}>
@@ -22,7 +22,9 @@ const PostContent: React.FC<PostContentProps> = ({ post }) => {
 				</Link>
 				on {createdAt.toISOString()}
 			</span>
-			<ReactMarkDown>{post?.content as string}</ReactMarkDown>
+			<div className="h-full rounded-br-sm rounded-bl-sm p-4 bg-gray-200	">
+				<ReactMarkDown>{post?.content as string}</ReactMarkDown>
+			</div>
 		</div>
 	);
 };

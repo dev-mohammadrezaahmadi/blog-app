@@ -40,15 +40,16 @@ const ImageUploader = () => {
 	};
 
 	return (
-		<div>
+		<div className="w-full p-2 bg-red-300 flex flex-col rounded-tr-sm rounded-tl-sm">
 			<Loader show={uploading} />
 			{uploading && <h3>{progress}%</h3>}
 
 			{!uploading && (
 				<>
-					<label>
-						📸 Upload Img
+					<label className="capitalize">
+						📸 Upload Your Image file
 						<input
+							className="ml-2"
 							type="file"
 							onChange={uploadFile}
 							accept="image/x-png,image/git,image/jpeg"
@@ -57,7 +58,9 @@ const ImageUploader = () => {
 				</>
 			)}
 
-			{downloadURL && <code>{`![alt](${downloadURL})`}</code>}
+			{downloadURL && (
+				<code className="break-none overflow-x-scroll">{`![alt](${downloadURL})`}</code>
+			)}
 		</div>
 	);
 };

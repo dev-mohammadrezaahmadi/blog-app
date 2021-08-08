@@ -28,7 +28,7 @@ const PostItem: React.FC<PostItemProps> = ({ post, admin = false }) => {
 	const minutesToRead = ((wordCount as number) / 100 + 1).toFixed(0);
 
 	return (
-		<div className="">
+		<div className="p-8 my-4 bg-white border rounded-md shadow-md w-4/5 mx-auto">
 			<Link href={`/${post?.username}`}>
 				<a href="">
 					<strong>By @{post?.username}</strong>
@@ -40,12 +40,35 @@ const PostItem: React.FC<PostItemProps> = ({ post, admin = false }) => {
 					<a href="">{post?.title}</a>
 				</h2>
 			</Link>
-			<footer>
-				<span>
-					{wordCount} words. {minutesToRead} min Read
+			<footer className="flex justify-between">
+				<span className="push-left">
+					{wordCount} words. {minutesToRead} min read
 				</span>
-				<span>❤ {post?.likes} likes</span>
+				<span>{post?.likes} ❤</span>
 			</footer>
+
+			{/* If admin view, show extra controls for user */}
+			{admin && (
+				<div className="flex justify-between mt-5">
+					<Link href={`/admin/${post?.slug}`}>
+						<h3>
+							<button className="mx-2 bg-blue-600 text-white text-xl font-bold py-2 px-4 rounded-md">
+								Edit
+							</button>
+						</h3>
+					</Link>
+
+					{post?.published ? (
+						<p className="mx-2 text-green-500  text-xl font-bold py-2 px-4 rounded-md">
+							Live
+						</p>
+					) : (
+						<p className="mx-2 text-red-700  text-xl font-bold py-2 px-4 rounded-md">
+							Unpublished
+						</p>
+					)}
+				</div>
+			)}
 		</div>
 	);
 };

@@ -11,8 +11,8 @@ const AdminPostsPage = () => {
 	return (
 		<main>
 			<AuthCheck>
-				<PostList />
 				<CreateNewPost />
+				<PostList />
 			</AuthCheck>
 		</main>
 	);
@@ -32,7 +32,9 @@ const PostList = () => {
 
 	return (
 		<>
-			<h1>Manage Your Posts</h1>
+			<h1 className="font-bold text-3xl w-full flex justify-center">
+				Manage Your Posts
+			</h1>
 			<PostFeed posts={posts as PostType[]} admin={true} />
 		</>
 	);
@@ -78,19 +80,32 @@ const CreateNewPost = () => {
 	};
 
 	return (
-		<form onSubmit={createPost}>
-			<input
-				type="text"
-				value={title}
-				onChange={(e) => setTitle(e.target.value)}
-				placeholder="type your article title"
-			/>
-			<p>
-				<strong>Slug:</strong> {slug}
-			</p>
-			<button type="submit" disabled={!isValid}>
-				Create New Post
-			</button>
-		</form>
+		<>
+			<form
+				className="w-4/5 mx-auto flex justify-between mb-10"
+				onSubmit={createPost}
+			>
+				<div className="w-4/6">
+					<input
+						type="text"
+						value={title}
+						onChange={(e) => setTitle(e.target.value)}
+						placeholder="type your article title"
+						className="w-full rounded-md text-black p-4"
+					/>
+				</div>
+				<button
+					className="bg-black text-white text-lg font-semibold rounded-md px-4 py-2 hover:bg-gray-900"
+					type="submit"
+					disabled={!isValid}
+				>
+					Create New Post
+				</button>
+			</form>
+			{/* __dev__ */}
+			{/* <p>
+				<strong className="uppercase ">Slug:</strong> {slug}
+			</p> */}
+		</>
 	);
 };

@@ -41,10 +41,15 @@ const HomePage: React.FC<HomePageProps> = (props) => {
 	};
 
 	return (
-		<main>
+		<main className="flex flex-col items-center">
 			<PostFeed posts={posts} />
 			{!loading && !postsEnd && (
-				<button onClick={getMorePosts}>Load more</button>
+				<button
+					onClick={getMorePosts}
+					className="border border-black rounded-md px-4 py-2 font-semibold hover:bg-black hover:text-white"
+				>
+					Load more
+				</button>
 			)}
 			<Loader show={loading} />
 			{postsEnd && "You have reached the end!"}

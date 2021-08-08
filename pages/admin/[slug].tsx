@@ -35,9 +35,9 @@ export const PostManager = () => {
 	return (
 		<main>
 			{post && (
-				<>
-					<section>
-						<h1>{post.title}</h1>
+				<div className="flex w-4/5 mx-auto">
+					<section className=" p-4 w-5/6 bg-white rounded-md shadow-sm">
+						<h1 className="font-bold text-2xl">{post.title}</h1>
 						<p>ID: {post.slug}</p>
 
 						<PostForm
@@ -47,16 +47,23 @@ export const PostManager = () => {
 						/>
 					</section>
 
-					<aside>
-						<h3>Tools</h3>
-						<button onClick={() => setPreview(!preview)}>
-							{preview ? "Edit" : "Preview"}
-						</button>
-						<Link href={`/${post.username}/${post.slug}`}>
-							<button>Live view</button>
-						</Link>
+					<aside className="w-2/6 flex justify-center">
+						<div className="bg-white lg:w-72 md:w-48 h-3/6 rounded-md shadow-sm p-4 flex flex-col">
+							<h3 className="font-bold uppercase text-3xl mb-10">Tools</h3>
+							<button
+								className="border border-blue-800 px-4 py-2 bg-white rounded-md text-blue-800 hover:bg-blue-800 hover:text-white"
+								onClick={() => setPreview(!preview)}
+							>
+								{preview ? "Edit" : "Preview"}
+							</button>
+							<Link href={`/${post.username}/${post.slug}`}>
+								<button className="mt-5 border border-green-600 px-4 py-2 bg-white rounded-md text-green-600 hover:bg-green-600 hover:text-white">
+									Live view
+								</button>
+							</Link>
+						</div>
 					</aside>
-				</>
+				</div>
 			)}
 		</main>
 	);
@@ -91,17 +98,21 @@ export const PostForm: React.FC<PostFormProps> = ({
 	};
 
 	return (
-		<form onSubmit={handleSubmit(updatePost)}>
+		<form
+			style={{ height: "600px" }}
+			className=" w-full flex flex-col mt-4"
+			onSubmit={handleSubmit(updatePost)}
+		>
+			<ImageUploader />
 			{preview && (
-				<div className="">
+				<div className="h-full rounded-br-sm rounded-bl-sm p-4 bg-gray-200 ">
 					<ReactMarkdown>{watch("content")}</ReactMarkdown>
 				</div>
 			)}
 
-			<ImageUploader />
-
-			<div className={preview ? "hidden" : "flex"}>
+			<div className={`flex h-5/6 flex-col			${preview ? "hidden" : "flex"}`}>
 				<textarea
+					className="h-full rounded-br-sm rounded-bl-sm p-4 bg-gray-200"
 					{...register("content", {
 						maxLength: { value: 20000, message: "content is too long" },
 						minLength: { value: 10, message: "content is too short" },
@@ -110,16 +121,33 @@ export const PostForm: React.FC<PostFormProps> = ({
 					name="content"
 				></textarea>
 
-				{errors.content && <p>{errors.content.message}</p>}
+				<div className="flex justify-between py-4">
+					<div>
+						{errors.content && (
+							<p className="flex items-center text-lg h-10 text-red-500 font-bold">
+								{errors.content.message} !
+							</p>
+						)}
+					</div>
+					<div className="flex">
+						<fieldset className="py-2 px-4 mx-2 rounded-md bg-black text-white">
+							<input
+								{...register("published")}
+								type="checkbox"
+								name="published"
+							/>
+							<label className="ml-2">Published</label>
+						</fieldset>
 
-				<fieldset>
-					<input {...register("published")} type="checkbox" name="published" />
-					<label>Published</label>
-				</fieldset>
-
-				<button type="submit" disabled={!isDirty || !isValid}>
-					Save Changes
-				</button>
+						<button
+							className="border border-yellow-600 px-4 py-2 bg-white rounded-md text-yellow-600 hover:bg-yellow-600 hover:text-white"
+							type="submit"
+							disabled={!isDirty || !isValid}
+						>
+							Save Changes
+						</button>
+					</div>
+				</div>
 			</div>
 		</form>
 	);

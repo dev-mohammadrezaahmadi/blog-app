@@ -1,15 +1,23 @@
 import Link from "next/link";
 import { useContext } from "react";
 import { UserContext } from "../lib/context";
+import { auth } from "../lib/firebase";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
 	const { user, username } = useContext(UserContext);
 	return (
 		<nav
-			style={{ width: "95vw" }}
-			className="shadow-lg rounded-lg bg-white px-4 py-2 mx-auto mt-2"
+			style={{
+				width: "96vw",
+				left: "50%",
+				marginLeft: "-48vw",
+				top: "1vh",
+				height: "70px",
+			}}
+			className="flex flex-col justify-center rounded-lg bg-white px-4 py-2 fixed"
 		>
-			<ul className="list-none flex justify-between">
+			<ul className="list-none flex justify-between items-center">
 				<li className="flex items-center">
 					<Link href="/">
 						<button className="bg-black text-white rounded-md p-2 uppercase text-2xl font-bold">
@@ -23,11 +31,12 @@ const Navbar = () => {
 					<div className="flex justify-evenly items-center">
 						<li>
 							<Link href="/admin">
-								<button className="bg-blue-700 text-white py-2 px-5 text-lg font-bold rounded-md">
+								<button className="mx-2 bg-blue-700 text-white py-2 px-5 text-lg font-bold rounded-md">
 									Write Posts
 								</button>
 							</Link>
 						</li>
+						<SignOutButton />
 						<li>
 							<Link href={`/${username}`}>
 								<img
@@ -56,3 +65,19 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+const SignOutButton = () => {
+	const router = useRouter();
+	return (
+		<button
+			style={{ width: "content" }}
+			className="bg-red-400 hover:bg-red-500 text-white py-2 px-5 text-lg font-bold rounded-md"
+			onClick={() => {
+				auth.signOut();
+				router.push("/");
+			}}
+		>
+			Sign Out
+		</button>
+	);
+};

@@ -21,24 +21,29 @@ const PostPage: React.FC<PostPageProps> = (props) => {
 
 	return (
 		<main>
-			<section>
-				<PostContent post={post as PostType} />
-			</section>
+			<div className="flex w-4/5 mx-auto">
+				<section className="w-5/6">
+					<PostContent post={post as PostType} />
+				</section>
 
-			<aside>
-				<p>
-					<strong>{post.likes || 0} ❤ </strong>
-				</p>
-				<AuthCheck
-					fallback={
-						<Link href={"/enter"}>
-							<button>💙 Sign Up</button>
-						</Link>
-					}
+				<aside
+					style={{ height: "content" }}
+					className="w-2/6 flex flex-col items-center p-4 bg-white rounded-md shadow-md "
 				>
-					<LikeButton postRef={postRef} />
-				</AuthCheck>
-			</aside>
+					<p className="mb-2 w-24 border border-purple-600 py-2 px-4 rounded-md flex justify-center">
+						<strong>{post.likes || 0} 💜 </strong>
+					</p>
+					<AuthCheck
+						fallback={
+							<Link href={"/enter"}>
+								<button className="">💙 Sign Up</button>
+							</Link>
+						}
+					>
+						<LikeButton postRef={postRef} />
+					</AuthCheck>
+				</aside>
+			</div>
 		</main>
 	);
 };

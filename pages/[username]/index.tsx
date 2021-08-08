@@ -4,6 +4,8 @@ import { GetServerSideProps } from "next";
 
 import { PostType, UserType } from "../../lib/context";
 import { getUserWithUsername, postToJSON } from "../../lib/firebase";
+import { auth } from "../../lib/firebase";
+import { useRouter } from "next/dist/client/router";
 
 interface UserProfilePageProps {
 	user: UserType;
@@ -13,7 +15,9 @@ interface UserProfilePageProps {
 const UserProfilePage: React.FC<UserProfilePageProps> = ({ user, posts }) => {
 	return (
 		<main>
-			<UserProfile user={user} />
+			<div className="flex justify-center flex-col w-4/5 mx-auto items-center">
+				<UserProfile user={user} />
+			</div>
 			<PostFeed posts={posts} admin={false} />
 		</main>
 	);
@@ -47,4 +51,20 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 	return {
 		props: { user, posts },
 	};
+};
+
+const SignOutButton = () => {
+	const router = useRouter();
+	return (
+		<button
+			style={{ width: "content" }}
+			className="mt-5 bg-red-400 hover:bg-red-500 text-white py-2 px-5 text-lg font-bold rounded-md"
+			onClick={() => {
+				auth.signOut();
+				router.push("/");
+			}}
+		>
+			Sign Out
+		</button>
+	);
 };

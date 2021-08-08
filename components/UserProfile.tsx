@@ -6,12 +6,12 @@ interface UserProfileProps {
 
 const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
 	return (
-		<div>
-			<img src={user?.photoURL} />
+		<div className="bg-white p-4 shadow-lg rounded-md flex flex-col items-center">
+			<img className="rounded-full" src={user?.photoURL} />
 			<p>
 				<i>@{user?.username}</i>
 			</p>
-			<h1>{user?.displayName}</h1>
+			<h1 className="font-bold text-xl">{user?.displayName}</h1>
 		</div>
 	);
 };
