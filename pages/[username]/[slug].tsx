@@ -21,14 +21,14 @@ const PostPage: React.FC<PostPageProps> = (props) => {
 
 	return (
 		<main>
-			<div className="flex w-4/5 mx-auto">
-				<section className="w-5/6">
+			<div className="flex w-full flex-col md:flex-row md:w-4/5 mx-auto">
+				<section className="w-full order-2 md:order-1 md:w-5/6">
 					<PostContent post={post as PostType} />
 				</section>
 
 				<aside
 					style={{ height: "content" }}
-					className="w-2/6 flex flex-col items-center p-4 bg-white rounded-md shadow-md "
+					className="w-full order-1 md:order-2 md:w-2/6 flex flex-col items-center p-4 bg-white rounded-md shadow-md "
 				>
 					<p className="mb-2 w-24 border border-purple-600 py-2 px-4 rounded-md flex justify-center">
 						<strong>{post.likes || 0} 💜 </strong>

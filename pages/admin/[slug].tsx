@@ -35,8 +35,8 @@ export const PostManager = () => {
 	return (
 		<main>
 			{post && (
-				<div className="flex w-4/5 mx-auto">
-					<section className=" p-4 w-5/6 bg-white rounded-md shadow-sm">
+				<div className="flex flex-col  md:flex-row w-full md:w-4/5 md:mx-auto">
+					<section className=" p-4 w-full order-2 md:order-1 md:w-5/6 bg-white rounded-md shadow-sm">
 						<h1 className="font-bold text-2xl">{post.title}</h1>
 						<p>ID: {post.slug}</p>
 
@@ -47,8 +47,8 @@ export const PostManager = () => {
 						/>
 					</section>
 
-					<aside className="w-2/6 flex justify-center">
-						<div className="bg-white lg:w-72 md:w-48 h-3/6 rounded-md shadow-sm p-4 flex flex-col">
+					<aside className="w-full order-1 md:order-1 md:w-2/6 flex justify-center">
+						<div className="bg-white lg:w-72 w-full md:w-48 h-3/6 rounded-md shadow-sm p-4 flex flex-col">
 							<h3 className="font-bold uppercase text-3xl mb-10">Tools</h3>
 							<button
 								className="border border-blue-800 px-4 py-2 bg-white rounded-md text-blue-800 hover:bg-blue-800 hover:text-white"
@@ -103,7 +103,8 @@ export const PostForm: React.FC<PostFormProps> = ({
 			className=" w-full flex flex-col mt-4"
 			onSubmit={handleSubmit(updatePost)}
 		>
-			<ImageUploader />
+			{!preview && <ImageUploader />}
+
 			{preview && (
 				<div className="h-full rounded-br-sm rounded-bl-sm p-4 bg-gray-200 ">
 					<ReactMarkdown>{watch("content")}</ReactMarkdown>

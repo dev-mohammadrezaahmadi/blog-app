@@ -52,18 +52,18 @@ const PostItem: React.FC<PostItemProps> = ({ post, admin = false }) => {
 				<div className="flex justify-between mt-5">
 					<Link href={`/admin/${post?.slug}`}>
 						<h3>
-							<button className="mx-2 bg-blue-600 text-white text-xl font-bold py-2 px-4 rounded-md">
+							<button className=" text-lg bg-blue-600 text-white md:text-xl font-bold py-2 px-2 md:px-4 rounded-md">
 								Edit
 							</button>
 						</h3>
 					</Link>
 
 					{post?.published ? (
-						<p className="mx-2 text-green-500  text-xl font-bold py-2 px-4 rounded-md">
+						<p className="mx-2 text-green-500  text-lg md:text-xl font-bold py-2 px-4 rounded-md">
 							Live
 						</p>
 					) : (
-						<p className="mx-2 text-red-700  text-xl font-bold py-2 px-4 rounded-md">
+						<p className="mx-2 text-red-700 text-lg md:text-xl font-bold py-2 px-4 rounded-md">
 							Unpublished
 						</p>
 					)}

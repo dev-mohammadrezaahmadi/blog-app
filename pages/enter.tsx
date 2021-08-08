@@ -36,7 +36,7 @@ const SignInButton = () => {
 
 	return (
 		<button
-			className=" flex items-center text-lg font-semibold bg-black text-white rounded-md px-5 py-2"
+			className="px-2 md:px-5 text-xs sm:text-sm md:text-lg flex items-center font-semibold bg-black text-white rounded-md py-2"
 			onClick={signInWithGoogle}
 		>
 			<img
@@ -53,7 +53,7 @@ const SignOutButton = () => {
 	const router = useRouter();
 	return (
 		<button
-			className="bg-red-400 text-white py-2 px-5 text-lg font-bold rounded-md"
+			className="bg-red-400 px-2 md:px-5 text-xs sm:text-sm md:text-lg text-white py-2 font-bold rounded-md"
 			onClick={() => {
 				auth.signOut();
 				router.push("/");
