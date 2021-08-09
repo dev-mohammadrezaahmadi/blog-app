@@ -57,8 +57,7 @@ const SignOutButton = () => {
 	const router = useRouter();
 	return (
 		<button
-			style={{ width: "content" }}
-			className="mt-5 bg-red-400 hover:bg-red-500 text-white py-2 px-5 text-lg font-bold rounded-md"
+			className="btn btn--red"
 			onClick={() => {
 				auth.signOut();
 				router.push("/");

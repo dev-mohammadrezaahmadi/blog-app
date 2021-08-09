@@ -14,6 +14,8 @@ const HomePage: React.FC<HomePageProps> = (props) => {
 	const [loading, setLoading] = useState(false);
 	const [postsEnd, setPostsEnd] = useState(false);
 
+	console.log(posts);
+
 	const getMorePosts = async () => {
 		setLoading(true);
 		const last = posts[posts.length - 1];
@@ -43,14 +45,17 @@ const HomePage: React.FC<HomePageProps> = (props) => {
 	return (
 		<main className="flex flex-col items-center">
 			<PostFeed posts={posts} />
-			{!loading && !postsEnd && (
-				<button
-					onClick={getMorePosts}
-					className="border border-black rounded-md px-4 py-2 font-semibold hover:bg-black hover:text-white"
-				>
-					Load more
-				</button>
+			{posts.length > 0 ? (
+				!loading &&
+				!postsEnd && (
+					<button onClick={getMorePosts} className="btn--outline">
+						Load more
+					</button>
+				)
+			) : (
+				<p>There is no posts yet</p>
 			)}
+
 			<Loader show={loading} />
 			{postsEnd && "You have reached the end!"}
 		</main>

@@ -20,30 +20,29 @@ const PostPage: React.FC<PostPageProps> = (props) => {
 	const post = realtimePost || props.post;
 
 	return (
-		<main>
-			<div className="flex w-full flex-col md:flex-row md:w-4/5 mx-auto">
-				<section className="w-full order-2 md:order-1 md:w-5/6">
-					<PostContent post={post as PostType} />
-				</section>
+		<main className="flex w-full flex-col md:flex-row md:w-4/5 mx-auto">
+			<section className="w-full order-2 md:order-1 md:w-5/6 md:px-10">
+				<PostContent post={post as PostType} />
+			</section>
 
-				<aside
-					style={{ height: "content" }}
-					className="w-full order-1 md:order-2 md:w-2/6 flex flex-col items-center p-4 bg-white rounded-md shadow-md "
-				>
-					<p className="mb-2 w-24 border border-purple-600 py-2 px-4 rounded-md flex justify-center">
+			<aside className="w-full order-1 md:order-2 md:w-1/6 md:py-5">
+				<div className="p-4 bg-white rounded-md shadow-md flex flex-col">
+					<p className="mb-2 border border-purple-600 rounded-md flex justify-center items-center py-2 px-4">
 						<strong>{post.likes || 0} 💜 </strong>
 					</p>
 					<AuthCheck
 						fallback={
 							<Link href={"/enter"}>
-								<button className="">💙 Sign Up</button>
+								<button className="btn--outline btn--outline-blue">
+									💙 Sign Up
+								</button>
 							</Link>
 						}
 					>
 						<LikeButton postRef={postRef} />
 					</AuthCheck>
-				</aside>
-			</div>
+				</div>
+			</aside>
 		</main>
 	);
 };

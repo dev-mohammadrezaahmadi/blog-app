@@ -3,12 +3,14 @@ import type { AppProps } from "next/app";
 import Navbar from "../components/Navbar";
 import { UserContext } from "../lib/context";
 import { useUserData } from "../lib/hooks";
+import { Toaster } from "react-hot-toast";
 
 function MyApp({ Component, pageProps }: AppProps) {
 	const userData = useUserData();
 
 	return (
 		<>
+			<Toaster />
 			<UserContext.Provider value={userData}>
 				<Navbar />
 				<Component {...pageProps} />

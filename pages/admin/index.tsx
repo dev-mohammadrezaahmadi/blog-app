@@ -94,11 +94,7 @@ const CreateNewPost = () => {
 						className="w-full rounded-md text-black p-4"
 					/>
 				</div>
-				<button
-					className="bg-black px-2 md:px-5 text-xs sm:text-sm md:text-lg text-white font-semibold rounded-md py-2 hover:bg-gray-900"
-					type="submit"
-					disabled={!isValid}
-				>
+				<button className="btn" type="submit" disabled={!isValid}>
 					Create New Post
 				</button>
 			</form>

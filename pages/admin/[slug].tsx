@@ -8,6 +8,7 @@ import { PostType } from "../../lib/context";
 import { auth, firestore, serverTimeStamp } from "../../lib/firebase";
 import Link from "next/link";
 import ImageUploader from "../../components/ImageUploader";
+import toast from "react-hot-toast";
 
 const AdminPostEdit = () => {
 	return (
@@ -51,13 +52,13 @@ export const PostManager = () => {
 						<div className="bg-white lg:w-72 w-full md:w-48 h-3/6 rounded-md shadow-sm p-4 flex flex-col">
 							<h3 className="font-bold uppercase text-3xl mb-10">Tools</h3>
 							<button
-								className="border border-blue-800 px-4 py-2 bg-white rounded-md text-blue-800 hover:bg-blue-800 hover:text-white"
+								className="btn--outline btn--outline-blue"
 								onClick={() => setPreview(!preview)}
 							>
 								{preview ? "Edit" : "Preview"}
 							</button>
 							<Link href={`/${post.username}/${post.slug}`}>
-								<button className="mt-5 border border-green-600 px-4 py-2 bg-white rounded-md text-green-600 hover:bg-green-600 hover:text-white">
+								<button className="mt-5 btn--outline btn--outline-green">
 									Live view
 								</button>
 							</Link>
@@ -95,6 +96,7 @@ export const PostForm: React.FC<PostFormProps> = ({
 		});
 
 		reset({ content, published });
+		toast.success("Post added. 😀yay!!");
 	};
 
 	return (
@@ -131,7 +133,7 @@ export const PostForm: React.FC<PostFormProps> = ({
 						)}
 					</div>
 					<div className="flex">
-						<fieldset className="py-2 px-4 mx-2 rounded-md bg-black text-white">
+						<fieldset className="btn cursor-auto font-semibold">
 							<input
 								{...register("published")}
 								type="checkbox"
@@ -141,7 +143,7 @@ export const PostForm: React.FC<PostFormProps> = ({
 						</fieldset>
 
 						<button
-							className="border border-yellow-600 px-4 py-2 bg-white rounded-md text-yellow-600 hover:bg-yellow-600 hover:text-white"
+							className="btn--outline"
 							type="submit"
 							disabled={!isDirty || !isValid}
 						>

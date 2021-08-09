@@ -28,17 +28,11 @@ const LikeButton: React.FC<LikeButtonProps> = ({ postRef }) => {
 		await batch.commit();
 	};
 	return likesDoc?.exists ? (
-		<button
-			className="w-24 border border-black rounded-md py-2 px-4 text-lg font-bold hover:bg-black hover:text-white"
-			onClick={removeLike}
-		>
+		<button className="btn--outline" onClick={removeLike}>
 			🤍 unlike
 		</button>
 	) : (
-		<button
-			className="w-24 border border-red-500 rounded-md py-2 px-4 text-lg font-bold hover:bg-red-400"
-			onClick={addLike}
-		>
+		<button className="btn--outline btn--outline-red" onClick={addLike}>
 			💗 like
 		</button>
 	);

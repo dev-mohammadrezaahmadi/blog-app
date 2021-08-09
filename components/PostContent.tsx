@@ -13,16 +13,20 @@ const PostContent: React.FC<PostContentProps> = ({ post }) => {
 			: post?.createdAt.toDate();
 
 	return (
-		<div className="p-8 my-4 bg-white border rounded-md shadow-md w-4/5 mx-auto">
-			<h1 className="font-bold text-lg">{post?.title}</h1>
-			<span>
-				Written by
-				<Link href={`/${post?.username}`}>
-					<a href="">@{post?.username}</a>
-				</Link>
-				on {createdAt.toISOString()}
-			</span>
-			<div className="h-full rounded-br-sm rounded-bl-sm p-4 bg-gray-200	">
+		<div className="my-4 bg-white border rounded-md shadow-md">
+			<div className="p-8">
+				<h1 className="font-extrabold text-2xl capitalize">{post?.title}</h1>
+				<span>
+					Written by{" "}
+					<strong>
+						<Link href={`/${post?.username}`}>
+							<a href="">@{post?.username}</a>
+						</Link>{" "}
+					</strong>
+					on {createdAt.toISOString()}
+				</span>
+			</div>
+			<div className="h-full rounded-br-sm rounded-bl-sm p-4 bg-gray-200 overflow-y-scroll">
 				<ReactMarkDown>{post?.content as string}</ReactMarkDown>
 			</div>
 		</div>
