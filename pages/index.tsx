@@ -14,8 +14,6 @@ const HomePage: React.FC<HomePageProps> = (props) => {
 	const [loading, setLoading] = useState(false);
 	const [postsEnd, setPostsEnd] = useState(false);
 
-	console.log(posts);
-
 	const getMorePosts = async () => {
 		setLoading(true);
 		const last = posts[posts.length - 1];
