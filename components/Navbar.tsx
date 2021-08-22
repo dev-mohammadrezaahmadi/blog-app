@@ -19,7 +19,7 @@ const Navbar = () => {
 			<ul className="list-none flex justify-between items-center">
 				<li className="flex items-center">
 					<Link href="/">
-						<button className="btn text-2xl uppercase">DEV</button>
+						<img src="app-blog.svg" className="w-16 cursor-pointer" />
 					</Link>
 				</li>
 

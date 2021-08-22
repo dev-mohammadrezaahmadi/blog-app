@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useState } from "react";
 import { GetServerSideProps } from "next";
 import Loader from "../components/Loader";
@@ -41,22 +42,32 @@ const HomePage: React.FC<HomePageProps> = (props) => {
 	};
 
 	return (
-		<main className="flex flex-col items-center">
-			<PostFeed posts={posts} />
-			{posts.length > 0 ? (
-				!loading &&
-				!postsEnd && (
-					<button onClick={getMorePosts} className="btn--outline">
-						Load more
-					</button>
-				)
-			) : (
-				<p>There is no posts yet</p>
-			)}
+		<>
+			<Head>
+				<title>Blog App</title>
+				<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+				<meta
+					name="description"
+					content="Read, Create and share content in simple way"
+				/>
+			</Head>
+			<main className="flex flex-col items-center">
+				<PostFeed posts={posts} />
+				{posts.length > 0 ? (
+					!loading &&
+					!postsEnd && (
+						<button onClick={getMorePosts} className="btn--outline">
+							Load more
+						</button>
+					)
+				) : (
+					<p>There is no posts yet</p>
+				)}
 
-			<Loader show={loading} />
-			{postsEnd && "You have reached the end!"}
-		</main>
+				<Loader show={loading} />
+				{postsEnd && "You have reached the end!"}
+			</main>
+		</>
 	);
 };
 

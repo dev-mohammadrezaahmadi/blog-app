@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { getUserWithUsername, postToJSON, firestore } from "../../lib/firebase";
 import { ParsedUrlQuery } from "querystring";
@@ -20,30 +21,35 @@ const PostPage: React.FC<PostPageProps> = (props) => {
 	const post = realtimePost || props.post;
 
 	return (
-		<main className="flex w-full flex-col md:flex-row md:w-4/5 mx-auto">
-			<section className="w-full order-2 md:order-1 md:w-5/6 md:px-10">
-				<PostContent post={post as PostType} />
-			</section>
+		<>
+			<Head>
+				<title>{props.post.slug}</title>
+			</Head>
+			<main className="flex w-full flex-col md:flex-row md:w-4/5 mx-auto">
+				<section className="w-full order-2 md:order-1 md:w-5/6 md:px-10">
+					<PostContent post={post as PostType} />
+				</section>
 
-			<aside className="w-full order-1 md:order-2 md:w-1/6 md:py-5">
-				<div className="p-4 bg-white rounded-md shadow-md flex flex-col">
-					<p className="mb-2 border border-purple-600 rounded-md flex justify-center items-center py-2 px-4">
-						<strong>{post.likes || 0} 💜 </strong>
-					</p>
-					<AuthCheck
-						fallback={
-							<Link href={"/enter"}>
-								<button className="btn--outline btn--outline-blue">
-									💙 Sign Up
-								</button>
-							</Link>
-						}
-					>
-						<LikeButton postRef={postRef} />
-					</AuthCheck>
-				</div>
-			</aside>
-		</main>
+				<aside className="w-full order-1 md:order-2 md:w-1/6 md:py-5">
+					<div className="p-4 bg-white rounded-md shadow-md flex flex-col">
+						<p className="mb-2 border border-purple-600 rounded-md flex justify-center items-center py-2 px-4">
+							<strong>{post.likes || 0} 💜 </strong>
+						</p>
+						<AuthCheck
+							fallback={
+								<Link href={"/enter"}>
+									<button className="btn--outline btn--outline-blue">
+										💙 Sign Up
+									</button>
+								</Link>
+							}
+						>
+							<LikeButton postRef={postRef} />
+						</AuthCheck>
+					</div>
+				</aside>
+			</main>
+		</>
 	);
 };
 

@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useContext, useState } from "react";
 import { useRouter } from "next/dist/client/router";
 import { useCollection } from "react-firebase-hooks/firestore";
@@ -9,12 +10,17 @@ import kebabcase from "lodash.kebabcase";
 
 const AdminPostsPage = () => {
 	return (
-		<main>
-			<AuthCheck>
-				<CreateNewPost />
-				<PostList />
-			</AuthCheck>
-		</main>
+		<>
+			<Head>
+				<title>Administrator</title>
+			</Head>
+			<main>
+				<AuthCheck>
+					<CreateNewPost />
+					<PostList />
+				</AuthCheck>
+			</main>
+		</>
 	);
 };
 

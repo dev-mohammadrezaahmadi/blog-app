@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useContext } from "react";
 import { UserContext } from "../lib/context";
 import { useRouter } from "next/router";
@@ -11,19 +12,24 @@ const EnterPage = () => {
 
 	if (user && username) router.push("/");
 	return (
-		<main className=" flex items-center">
-			<div className="flex justify-center items-center sm:w-1/2 lg:w-1/4 mx-auto rounded-md relative h-2/5">
-				{user ? (
-					!username ? (
-						<UsernameForm />
+		<>
+			<Head>
+				<title>Enter</title>
+			</Head>
+			<main className=" flex items-center">
+				<div className="flex justify-center items-center sm:w-1/2 lg:w-1/4 mx-auto rounded-md relative h-2/5">
+					{user ? (
+						!username ? (
+							<UsernameForm />
+						) : (
+							<SignOutButton />
+						)
 					) : (
-						<SignOutButton />
-					)
-				) : (
-					<SignInButton />
-				)}
-			</div>
-		</main>
+						<SignInButton />
+					)}
+				</div>
+			</main>
+		</>
 	);
 };
 

@@ -1,3 +1,4 @@
+import Head from "next/head";
 import UserProfile from "../../components/UserProfile";
 import PostFeed from "../../components/PostFeed";
 import { GetServerSideProps } from "next";
@@ -12,12 +13,17 @@ interface UserProfilePageProps {
 
 const UserProfilePage: React.FC<UserProfilePageProps> = ({ user, posts }) => {
 	return (
-		<main>
-			<div className="flex justify-center flex-col w-4/5 mx-auto items-center">
-				<UserProfile user={user} />
-			</div>
-			<PostFeed posts={posts} admin={false} />
-		</main>
+		<>
+			<Head>
+				<title>User: {user.displayName}</title>
+			</Head>
+			<main>
+				<div className="flex justify-center flex-col w-4/5 mx-auto items-center">
+					<UserProfile user={user} />
+				</div>
+				<PostFeed posts={posts} admin={false} />
+			</main>
+		</>
 	);
 };
 
